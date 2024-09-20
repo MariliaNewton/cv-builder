@@ -1,0 +1,25 @@
+.main-container div {
+  width: 100%;
+}
+
+.main-container {
+  display: flex;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-title {
+  display: flex;
+  align-items: center;
+}
+
+.input-title h1 {
+  flex: 1;
+}
+
+.input-title button {
+  height: 2rem;
+}
