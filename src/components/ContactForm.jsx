@@ -7,7 +7,7 @@ function ContactForm({
   return (
     <div className="input-form">
       <div className="input-title">
-        <h1>Personal Info</h1>
+        <h1>Contact</h1>
         <button className="see-more">+</button>
       </div>
 

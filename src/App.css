@@ -6,6 +6,12 @@
   display: flex;
 }
 
+.forms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
 .input-info {
   display: flex;
   flex-direction: column;
@@ -29,5 +35,19 @@
 }
 
 .skill-item p {
+  flex: 1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.work-exp-item {
+  display: flex;
+}
+
+.work-exp-item p {
   flex: 1;
 }

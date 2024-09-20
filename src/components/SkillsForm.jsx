@@ -8,7 +8,7 @@ function SkillsForm({
   skills,
 }) {
   return (
-    <>
+    <div>
       <div className="input-title">
         <h1>Skills</h1>
         <button className="see-more">+</button>
@@ -31,7 +31,7 @@ function SkillsForm({
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
