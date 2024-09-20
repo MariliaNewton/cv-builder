@@ -2,8 +2,13 @@ import { useState } from "react";
 import "./App.css";
 import PersonalForm from "./components/PersonalForm";
 import ContactForm from "./components/ContactForm";
+import SkillsForm from "./components/SkillsForm";
 
 function App() {
+  // State SkillsForm
+  const [newSkill, setNewSkill] = useState("");
+  const [skills, setSkills] = useState(["css", "html"]);
+
   // Handler functions PersonalForm
   function handleFirstNameChange(e) {
     console.log(e.target.value);
@@ -32,21 +37,41 @@ function App() {
     console.log(e.target.value);
   }
 
+  // Handler functions SkillsForm
+  function handleAddSkill() {
+    setSkills((s) => [...s, newSkill]);
+    setNewSkill("");
+  }
+  function handleRemoveSkill(index) {
+    setSkills(skills.filter((_, i) => i !== index));
+  }
+  function handleSkillChange(e) {
+    setNewSkill(e.target.value);
+  }
+
   return (
     <div className="main-container">
       <div className="forms-container">
         <PersonalForm
-          handleFirstNameChange={handleFirstNameChange}
-          handleLastNameChange={handleLastNameChange}
-          handleOccupationChange={handleOccupationChange}
-          handleSummaryChange={handleSummaryChange}
+          onFirstNameChange={handleFirstNameChange}
+          onLastNameChange={handleLastNameChange}
+          onOccupationChange={handleOccupationChange}
+          onSummaryChange={handleSummaryChange}
         />
 
         <ContactForm
-          handlePhoneNumberChange={handlePhoneNumberChange}
-          handleEmailChange={handleEmailChange}
-          handlelocationChange={handlelocationChange}
-          handlelinkedInChange={handlelinkedInChange}
+          onPhoneNumberChange={handlePhoneNumberChange}
+          onEmailChange={handleEmailChange}
+          onlocationChange={handlelocationChange}
+          onlinkedInChange={handlelinkedInChange}
+        />
+
+        <SkillsForm
+          onAddSkill={handleAddSkill}
+          onRemoveSkill={handleRemoveSkill}
+          onSkillChange={handleSkillChange}
+          newSkill={newSkill}
+          skills={skills}
         />
       </div>
 

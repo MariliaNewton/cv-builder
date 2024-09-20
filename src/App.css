@@ -6,7 +6,7 @@
   display: flex;
 }
 
-.input-form {
+.input-info {
   display: flex;
   flex-direction: column;
 }
@@ -22,4 +22,12 @@
 
 .input-title button {
   height: 2rem;
+}
+
+.skill-item {
+  display: flex;
+}
+
+.skill-item p {
+  flex: 1;
 }

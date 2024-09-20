@@ -1,8 +1,8 @@
 function ContactForm({
-  handlePhoneNumberChange,
-  handleEmailChange,
-  handlelocationChange,
-  handlelinkedInChange,
+  onPhoneNumberChange,
+  onEmailChange,
+  onlocationChange,
+  onlinkedInChange,
 }) {
   return (
     <div className="input-form">
@@ -11,17 +11,19 @@ function ContactForm({
         <button className="see-more">+</button>
       </div>
 
-      <label htmlFor="phone-number">Phone number:</label>
-      <input type="tel" id="phone-number" onChange={handlePhoneNumberChange} />
+      <div className="input-info">
+        <label htmlFor="phone-number">Phone number:</label>
+        <input type="tel" id="phone-number" onChange={onPhoneNumberChange} />
 
-      <label htmlFor="email">Email:</label>
-      <input type="text" id="email" onChange={handleEmailChange} />
+        <label htmlFor="email">Email:</label>
+        <input type="text" id="email" onChange={onEmailChange} />
 
-      <label htmlFor="location">Location:</label>
-      <input type="text" id="location" onChange={handlelocationChange} />
+        <label htmlFor="location">Location:</label>
+        <input type="text" id="location" onChange={onlocationChange} />
 
-      <label htmlFor="linked-in">linkedIn link:</label>
-      <input type="url" id="linked-in" onChange={handlelinkedInChange} />
+        <label htmlFor="linked-in">linkedIn link:</label>
+        <input type="url" id="linked-in" onChange={onlinkedInChange} />
+      </div>
     </div>
   );
 }
