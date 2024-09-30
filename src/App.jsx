@@ -1,5 +1,13 @@
 import { useState } from "react";
 import "./App.css";
+import "./assets/fonts/lato-v24-latin-300.woff2";
+import "./assets/fonts/lato-v24-latin-regular.woff2";
+import "./assets/fonts/playfair-display-v37-latin-regular.woff2";
+import "./assets/fonts/playfair-display-v37-latin-500.woff2";
+import "./assets/fonts/playfair-display-v37-latin-600.woff2";
+import "./assets/fonts/playfair-display-v37-latin-700.woff2";
+import "./assets/fonts/playfair-display-v37-latin-800.woff2";
+import "./assets/fonts/playfair-display-v37-latin-900.woff2";
 import PersonalForm from "./components/PersonalForm";
 import ContactForm from "./components/ContactForm";
 import SkillsForm from "./components/SkillsForm";
@@ -185,82 +193,87 @@ function App() {
   }
 
   return (
-    <div className="main-container">
-      <div className="forms-container">
-        <PersonalForm
-          onFirstNameChange={handleFirstNameChange}
-          onLastNameChange={handleLastNameChange}
-          onOccupationChange={handleOccupationChange}
-          onSummaryChange={handleSummaryChange}
-          onSeeMoreButtonClick={handleToggleActiveClass}
-        />
+    <div className="main">
+      <header>
+        <h1>CV Builder</h1>
+      </header>
+      <div className="main-container">
+        <div className="forms-container">
+          <PersonalForm
+            onFirstNameChange={handleFirstNameChange}
+            onLastNameChange={handleLastNameChange}
+            onOccupationChange={handleOccupationChange}
+            onSummaryChange={handleSummaryChange}
+            onSeeMoreButtonClick={handleToggleActiveClass}
+          />
 
-        <ContactForm
-          onPhoneNumberChange={handlePhoneNumberChange}
-          onEmailChange={handleEmailChange}
-          onlocationChange={handlelocationChange}
-          onlinkedInChange={handlelinkedInChange}
-          onSeeMoreButtonClick={handleToggleActiveClass}
-        />
+          <ContactForm
+            onPhoneNumberChange={handlePhoneNumberChange}
+            onEmailChange={handleEmailChange}
+            onlocationChange={handlelocationChange}
+            onlinkedInChange={handlelinkedInChange}
+            onSeeMoreButtonClick={handleToggleActiveClass}
+          />
 
-        <SkillsForm
-          onAddSkill={handleAddSkill}
-          onRemoveSkill={handleRemoveSkill}
-          onSkillChange={handleSkillChange}
-          skills={skills}
-          newSkill={newSkill}
-          onSeeMoreButtonClick={handleToggleActiveClass}
-        />
+          <SkillsForm
+            onAddSkill={handleAddSkill}
+            onRemoveSkill={handleRemoveSkill}
+            onSkillChange={handleSkillChange}
+            skills={skills}
+            newSkill={newSkill}
+            onSeeMoreButtonClick={handleToggleActiveClass}
+          />
 
-        <WorkExpForm
-          onSubmitForm={handleSubmitWorkExp}
-          onDeleteWorkExp={handleDeleteWorkExp}
-          onEditWorkExp={handleEditWorkExp}
-          onRoleChange={handleRoleChange}
-          onCompanyChange={handleCompanyChange}
-          onStartDateChange={handleStartDateWorkChange}
-          onEndDateChange={handleEndDateWorkChange}
-          onDescriptionChange={handleDescriptionChange}
-          workExperiences={workExperiences}
-          newRole={newRole}
-          newCompany={newCompany}
-          newStartDate={newStartDateWork}
-          newEndDate={newEndDateWork}
-          newDescription={newDescription}
-          onSeeMoreButtonClick={handleToggleActiveClass}
-        />
+          <WorkExpForm
+            onSubmitForm={handleSubmitWorkExp}
+            onDeleteWorkExp={handleDeleteWorkExp}
+            onEditWorkExp={handleEditWorkExp}
+            onRoleChange={handleRoleChange}
+            onCompanyChange={handleCompanyChange}
+            onStartDateChange={handleStartDateWorkChange}
+            onEndDateChange={handleEndDateWorkChange}
+            onDescriptionChange={handleDescriptionChange}
+            workExperiences={workExperiences}
+            newRole={newRole}
+            newCompany={newCompany}
+            newStartDate={newStartDateWork}
+            newEndDate={newEndDateWork}
+            newDescription={newDescription}
+            onSeeMoreButtonClick={handleToggleActiveClass}
+          />
 
-        <EducationForm
-          onSubmitForm={handleSubmitEducation}
-          onDeleteEducation={handleDeleteEducation}
-          onEditEducation={handleEditEducation}
-          onSchoolChange={handleSchoolChange}
-          onDegreeChange={handleDegreeChange}
-          onStartDateChange={handleStartDateEduChange}
-          onEndDateChange={handleEndDateEduChange}
-          educations={educations}
-          newDegree={newDegree}
-          newSchool={newSchool}
-          newStartDate={newStartDateEdu}
-          newEndDate={newEndDateEdu}
-          onSeeMoreButtonClick={handleToggleActiveClass}
-        />
-      </div>
+          <EducationForm
+            onSubmitForm={handleSubmitEducation}
+            onDeleteEducation={handleDeleteEducation}
+            onEditEducation={handleEditEducation}
+            onSchoolChange={handleSchoolChange}
+            onDegreeChange={handleDegreeChange}
+            onStartDateChange={handleStartDateEduChange}
+            onEndDateChange={handleEndDateEduChange}
+            educations={educations}
+            newDegree={newDegree}
+            newSchool={newSchool}
+            newStartDate={newStartDateEdu}
+            newEndDate={newEndDateEdu}
+            onSeeMoreButtonClick={handleToggleActiveClass}
+          />
+        </div>
 
-      <div className="cv-preview-container">
-        <CVPreview
-          firstName={firstName}
-          lastName={lastName}
-          occupation={occupation}
-          summary={summary}
-          phoneNumber={phoneNumber}
-          email={email}
-          location={location}
-          linkedIn={linkedIn}
-          skills={skills}
-          workExperiences={workExperiences}
-          educations={educations}
-        />
+        <div className="cv-preview-container">
+          <CVPreview
+            firstName={firstName}
+            lastName={lastName}
+            occupation={occupation}
+            summary={summary}
+            phoneNumber={phoneNumber}
+            email={email}
+            location={location}
+            linkedIn={linkedIn}
+            skills={skills}
+            workExperiences={workExperiences}
+            educations={educations}
+          />
+        </div>
       </div>
     </div>
   );

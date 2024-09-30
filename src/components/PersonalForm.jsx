@@ -14,20 +14,33 @@ function PersonalForm({
     <div className="input-form">
       <div className="input-title">
         <h1>Personal Info</h1>
-        <button className="see-more" onClick={onSeeMoreButtonClick}>
-          +
-        </button>
+        <button className="see-more" onClick={onSeeMoreButtonClick}></button>
       </div>
 
       <div className="input-info">
         <label htmlFor="first-name">First name:</label>
-        <input type="text" id="first-name" onChange={onFirstNameChange} />
+        <input
+          type="text"
+          id="first-name"
+          maxLength={10}
+          onChange={onFirstNameChange}
+        />
 
         <label htmlFor="last-name">Last name:</label>
-        <input type="text" id="last-name" onChange={onLastNameChange} />
+        <input
+          type="text"
+          id="last-name"
+          onChange={onLastNameChange}
+          maxLength={10}
+        />
 
         <label htmlFor="occupation">Occupation:</label>
-        <input type="text" id="occupation" onChange={onOccupationChange} />
+        <input
+          type="text"
+          id="occupation"
+          onChange={onOccupationChange}
+          maxLength={15}
+        />
 
         <label htmlFor="summary">Summary:</label>
         <textarea

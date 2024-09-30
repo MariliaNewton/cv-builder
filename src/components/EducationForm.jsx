@@ -17,9 +17,7 @@ function EducationalForm({
     <div className="input-form">
       <div className="input-title">
         <h1>Education</h1>
-        <button className="see-more" onClick={onSeeMoreButtonClick}>
-          +
-        </button>
+        <button className="see-more" onClick={onSeeMoreButtonClick}></button>
       </div>
       <form onSubmit={onSubmitForm} className="input-info">
         <label htmlFor="school">School:</label>
@@ -58,17 +56,26 @@ function EducationalForm({
           required
         />
 
-        <button type="submit">SUBMIT</button>
-      </form>
-      {educations.map((education, index) => (
-        <div key={index} className="education-item">
-          <p>
-            {education.degree} - {education.school}
-          </p>
-          <button onClick={() => onEditEducation(index)}>edit</button>
-          <button onClick={() => onDeleteEducation(index)}>del</button>
+        <button type="submit" className="add-button"></button>
+
+        <div className="edu-container">
+          {educations.map((education, index) => (
+            <div key={index} className="education-item">
+              <p>
+                {education.degree} - {education.school}
+              </p>
+              <button
+                onClick={() => onEditEducation(index)}
+                className="edit-button"
+              ></button>
+              <button
+                onClick={() => onDeleteEducation(index)}
+                className="delete-button"
+              ></button>
+            </div>
+          ))}
         </div>
-      ))}
+      </form>
     </div>
   );
 }

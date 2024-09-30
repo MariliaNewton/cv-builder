@@ -19,9 +19,7 @@ function WorkExpForm({
     <div className="input-form">
       <div className="input-title">
         <h1>Work experience</h1>
-        <button className="see-more" onClick={onSeeMoreButtonClick}>
-          +
-        </button>
+        <button className="see-more" onClick={onSeeMoreButtonClick}></button>
       </div>
 
       <form className="input-info" onSubmit={onSubmitForm}>
@@ -71,18 +69,25 @@ function WorkExpForm({
           onChange={onDescriptionChange}
         />
 
-        <button type="submit">SUBMIT</button>
-      </form>
-
-      {workExperiences.map((workExp, index) => (
-        <div key={index} className="work-exp-item">
-          <p>
-            {workExp.role} - {workExp.company}
-          </p>
-          <button onClick={() => onEditWorkExp(index)}>edit</button>
-          <button onClick={() => onDeleteWorkExp(index)}>del</button>
+        <button type="submit" className="add-button"></button>
+        <div className="work-exps-container">
+          {workExperiences.map((workExp, index) => (
+            <div key={index} className="work-exp-item">
+              <p>
+                {workExp.role} - {workExp.company}
+              </p>
+              <button
+                onClick={() => onEditWorkExp(index)}
+                className="edit-button"
+              ></button>
+              <button
+                onClick={() => onDeleteWorkExp(index)}
+                className="delete-button"
+              ></button>
+            </div>
+          ))}
         </div>
-      ))}
+      </form>
     </div>
   );
 }

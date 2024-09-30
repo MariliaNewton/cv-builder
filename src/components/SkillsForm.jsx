@@ -12,9 +12,7 @@ function SkillsForm({
     <div className="input-form">
       <div className="input-title">
         <h1>Skills</h1>
-        <button className="see-more" onClick={onSeeMoreButtonClick}>
-          +
-        </button>
+        <button className="see-more" onClick={onSeeMoreButtonClick}></button>
       </div>
 
       <div className="input-info">
@@ -24,15 +22,21 @@ function SkillsForm({
           id="skill"
           value={newSkill}
           onChange={onSkillChange}
+          maxLength={20}
         />
-        <button onClick={onAddSkill}>+</button>
+        <button onClick={onAddSkill} className="add-button"></button>
 
-        {skills.map((skill, index) => (
-          <div className="skill-item" key={index}>
-            <p>{skill}</p>
-            <button onClick={() => onRemoveSkill(index)}>X</button>
-          </div>
-        ))}
+        <div className="skills-container">
+          {skills.map((skill, index) => (
+            <div className="skill-item" key={index}>
+              <p>{skill}</p>
+              <button
+                onClick={() => onRemoveSkill(index)}
+                className="delete-button"
+              ></button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
