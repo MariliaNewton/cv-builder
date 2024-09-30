@@ -7,6 +7,7 @@ function WorkExpForm({
   onStartDateChange,
   onEndDateChange,
   onDescriptionChange,
+  onSeeMoreButtonClick,
   workExperiences,
   newRole,
   newCompany,
@@ -15,13 +16,15 @@ function WorkExpForm({
   newDescription,
 }) {
   return (
-    <div>
+    <div className="input-form">
       <div className="input-title">
         <h1>Work experience</h1>
-        <button className="see-more">+</button>
+        <button className="see-more" onClick={onSeeMoreButtonClick}>
+          +
+        </button>
       </div>
 
-      <form onSubmit={onSubmitForm}>
+      <form className="input-info" onSubmit={onSubmitForm}>
         <label htmlFor="position">Position/Role:</label>
         <input
           type="text"

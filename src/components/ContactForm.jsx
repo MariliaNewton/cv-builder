@@ -3,12 +3,15 @@ function ContactForm({
   onEmailChange,
   onlocationChange,
   onlinkedInChange,
+  onSeeMoreButtonClick,
 }) {
   return (
     <div className="input-form">
       <div className="input-title">
         <h1>Contact</h1>
-        <button className="see-more">+</button>
+        <button className="see-more" onClick={onSeeMoreButtonClick}>
+          +
+        </button>
       </div>
 
       <div className="input-info">

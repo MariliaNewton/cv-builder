@@ -4,14 +4,17 @@ function SkillsForm({
   onAddSkill,
   onRemoveSkill,
   onSkillChange,
+  onSeeMoreButtonClick,
   newSkill,
   skills,
 }) {
   return (
-    <div>
+    <div className="input-form">
       <div className="input-title">
         <h1>Skills</h1>
-        <button className="see-more">+</button>
+        <button className="see-more" onClick={onSeeMoreButtonClick}>
+          +
+        </button>
       </div>
 
       <div className="input-info">

@@ -3,12 +3,20 @@ function PersonalForm({
   onLastNameChange,
   onOccupationChange,
   onSummaryChange,
+  onSeeMoreButtonClick,
 }) {
+  // function toggleActiveClass(e) {
+  //   e.target.classList.toggle("active");
+  //   document.querySelector(".input-info").classList.toggle("active");
+  // }
+
   return (
     <div className="input-form">
       <div className="input-title">
         <h1>Personal Info</h1>
-        <button className="see-more">+</button>
+        <button className="see-more" onClick={onSeeMoreButtonClick}>
+          +
+        </button>
       </div>
 
       <div className="input-info">

@@ -4,8 +4,22 @@ import PersonalForm from "./components/PersonalForm";
 import ContactForm from "./components/ContactForm";
 import SkillsForm from "./components/SkillsForm";
 import WorkExpForm from "./components/WorkExpForm";
+import EducationForm from "./components/EducationForm";
+import CVPreview from "./components/CVPreview";
 
 function App() {
+  // States PersonalForm
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [summary, setSummary] = useState("");
+
+  // States ContactForm
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [location, setLocation] = useState("");
+  const [linkedIn, setLinkedIn] = useState("");
+
   // States SkillsForm
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState("");
@@ -14,9 +28,69 @@ function App() {
   const [workExperiences, setWorkExperiences] = useState([]);
   const [newRole, setNewRole] = useState("");
   const [newCompany, setNewCompany] = useState("");
-  const [newStartDate, setNewStartDate] = useState("");
-  const [newEndDate, setNewEndDate] = useState("");
+  const [newStartDateWork, setNewStartDateWork] = useState("");
+  const [newEndDateWork, setNewEndDateWork] = useState("");
   const [newDescription, setNewDescription] = useState("");
+
+  // States EducationForm
+  const [educations, setEducations] = useState([]);
+  const [newSchool, setNewSchool] = useState("");
+  const [newDegree, setNewDegree] = useState("");
+  const [newStartDateEdu, setNewStartDateEdu] = useState("");
+  const [newEndDateEdu, setNewEndDateEdu] = useState("");
+
+  // Handler
+  function handleToggleActiveClass(e) {
+    e.target.classList.toggle("active");
+    e.target
+      .closest(".input-form")
+      .querySelector(".input-info")
+      .classList.toggle("active");
+  }
+
+  // Handler functions EducationForm
+  function handleSubmitEducation(e) {
+    e.preventDefault();
+
+    setEducations((e) => [
+      ...e,
+      {
+        school: newSchool,
+        degree: newDegree,
+        startDate: newStartDateEdu,
+        endDate: newEndDateEdu,
+      },
+    ]);
+
+    setNewSchool("");
+    setNewDegree("");
+    setNewStartDateEdu("");
+    setNewEndDateEdu("");
+  }
+  function handleDeleteEducation(index) {
+    setEducations(educations.filter((_, i) => i !== index));
+  }
+  function handleEditEducation(index) {
+    const educationToEdit = educations.find((_, i) => i === index);
+    setNewSchool(educationToEdit.school);
+    setNewDegree(educationToEdit.degree);
+    setNewStartDateEdu(educationToEdit.startDate);
+    setNewEndDateEdu(educationToEdit.endDate);
+
+    handleDeleteEducation(index);
+  }
+  function handleSchoolChange(e) {
+    setNewSchool(e.target.value);
+  }
+  function handleDegreeChange(e) {
+    setNewDegree(e.target.value);
+  }
+  function handleStartDateEduChange(e) {
+    setNewStartDateEdu(e.target.value);
+  }
+  function handleEndDateEduChange(e) {
+    setNewEndDateEdu(e.target.value);
+  }
 
   // Handler functions WorkExpForm
   function handleSubmitWorkExp(e) {
@@ -27,16 +101,16 @@ function App() {
       {
         role: newRole,
         company: newCompany,
-        startDate: newStartDate,
-        endDate: newEndDate,
+        startDate: newStartDateWork,
+        endDate: newEndDateWork,
         description: newDescription,
       },
     ]);
 
     setNewRole("");
     setNewCompany("");
-    setNewStartDate("");
-    setNewEndDate("");
+    setNewStartDateWork("");
+    setNewEndDateWork("");
     setNewDescription("");
   }
   function handleDeleteWorkExp(index) {
@@ -46,8 +120,8 @@ function App() {
     const workExpToEdit = workExperiences.find((_, i) => i === index);
     setNewRole(workExpToEdit.role);
     setNewCompany(workExpToEdit.company);
-    setNewStartDate(workExpToEdit.startDate);
-    setNewEndDate(workExpToEdit.endDate);
+    setNewStartDateWork(workExpToEdit.startDate);
+    setNewEndDateWork(workExpToEdit.endDate);
     setNewDescription(workExpToEdit.description);
 
     handleDeleteWorkExp(index);
@@ -58,11 +132,11 @@ function App() {
   function handleCompanyChange(e) {
     setNewCompany(e.target.value);
   }
-  function handleStartDateChange(e) {
-    setNewStartDate(e.target.value);
+  function handleStartDateWorkChange(e) {
+    setNewStartDateWork(e.target.value);
   }
-  function handleEndDateChange(e) {
-    setNewEndDate(e.target.value);
+  function handleEndDateWorkChange(e) {
+    setNewEndDateWork(e.target.value);
   }
   function handleDescriptionChange(e) {
     setNewDescription(e.target.value);
@@ -70,30 +144,30 @@ function App() {
 
   // Handler functions PersonalForm
   function handleFirstNameChange(e) {
-    console.log(e.target.value);
+    setFirstName(e.target.value);
   }
   function handleLastNameChange(e) {
-    console.log(e.target.value);
+    setLastName(e.target.value);
   }
   function handleOccupationChange(e) {
-    console.log(e.target.value);
+    setOccupation(e.target.value);
   }
   function handleSummaryChange(e) {
-    console.log(e.target.value);
+    setSummary(e.target.value);
   }
 
   // Handler functions ContactForm
   function handlePhoneNumberChange(e) {
-    console.log(e.target.value);
+    setPhoneNumber(e.target.value);
   }
   function handleEmailChange(e) {
-    console.log(e.target.value);
+    setEmail(e.target.value);
   }
   function handlelocationChange(e) {
-    console.log(e.target.value);
+    setLocation(e.target.value);
   }
   function handlelinkedInChange(e) {
-    console.log(e.target.value);
+    setLinkedIn(e.target.value);
   }
 
   // Handler functions SkillsForm
@@ -118,6 +192,7 @@ function App() {
           onLastNameChange={handleLastNameChange}
           onOccupationChange={handleOccupationChange}
           onSummaryChange={handleSummaryChange}
+          onSeeMoreButtonClick={handleToggleActiveClass}
         />
 
         <ContactForm
@@ -125,6 +200,7 @@ function App() {
           onEmailChange={handleEmailChange}
           onlocationChange={handlelocationChange}
           onlinkedInChange={handlelinkedInChange}
+          onSeeMoreButtonClick={handleToggleActiveClass}
         />
 
         <SkillsForm
@@ -133,6 +209,7 @@ function App() {
           onSkillChange={handleSkillChange}
           skills={skills}
           newSkill={newSkill}
+          onSeeMoreButtonClick={handleToggleActiveClass}
         />
 
         <WorkExpForm
@@ -141,20 +218,49 @@ function App() {
           onEditWorkExp={handleEditWorkExp}
           onRoleChange={handleRoleChange}
           onCompanyChange={handleCompanyChange}
-          onStartDateChange={handleStartDateChange}
-          onEndDateChange={handleEndDateChange}
+          onStartDateChange={handleStartDateWorkChange}
+          onEndDateChange={handleEndDateWorkChange}
           onDescriptionChange={handleDescriptionChange}
           workExperiences={workExperiences}
           newRole={newRole}
           newCompany={newCompany}
-          newStartDate={newStartDate}
-          newEndDate={newEndDate}
+          newStartDate={newStartDateWork}
+          newEndDate={newEndDateWork}
           newDescription={newDescription}
+          onSeeMoreButtonClick={handleToggleActiveClass}
+        />
+
+        <EducationForm
+          onSubmitForm={handleSubmitEducation}
+          onDeleteEducation={handleDeleteEducation}
+          onEditEducation={handleEditEducation}
+          onSchoolChange={handleSchoolChange}
+          onDegreeChange={handleDegreeChange}
+          onStartDateChange={handleStartDateEduChange}
+          onEndDateChange={handleEndDateEduChange}
+          educations={educations}
+          newDegree={newDegree}
+          newSchool={newSchool}
+          newStartDate={newStartDateEdu}
+          newEndDate={newEndDateEdu}
+          onSeeMoreButtonClick={handleToggleActiveClass}
         />
       </div>
 
       <div className="cv-preview-container">
-        <h1>Just to fill space while coding</h1>
+        <CVPreview
+          firstName={firstName}
+          lastName={lastName}
+          occupation={occupation}
+          summary={summary}
+          phoneNumber={phoneNumber}
+          email={email}
+          location={location}
+          linkedIn={linkedIn}
+          skills={skills}
+          workExperiences={workExperiences}
+          educations={educations}
+        />
       </div>
     </div>
   );

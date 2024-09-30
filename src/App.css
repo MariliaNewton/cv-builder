@@ -12,9 +12,56 @@
   gap: 4rem;
 }
 
+.input-form {
+  border: 1px solid red;
+}
+
 .input-info {
   display: flex;
+  overflow: hidden;
+  /* box-sizing: border-box; */
   flex-direction: column;
+  background-color: aqua;
+  /* padding: 1rem; */
+  /* transform: scaleY(0);
+  transform-origin: top; */
+  /* visibility: hidden; */
+
+  /* transform: scaleY(0); */
+  animation: close 2s;
+  height: 0;
+  transform-origin: bottom;
+}
+
+.input-info.active {
+  animation: open 2s;
+  height: auto;
+  transform-origin: top;
+  /* transform: scaleY(1); */
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes close {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
 }
 
 .input-title {
@@ -44,10 +91,14 @@ form {
   gap: 1rem;
 }
 
-.work-exp-item {
+.work-exp-item,
+.education-item {
   display: flex;
 }
 
-.work-exp-item p {
+.work-exp-item p,
+.education-item p {
   flex: 1;
 }
+
+/* CV PREVIEW */
