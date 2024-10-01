@@ -1,4 +1,8 @@
 function ContactForm({
+  phoneNumber,
+  email,
+  location,
+  linkedIn,
   onPhoneNumberChange,
   onEmailChange,
   onlocationChange,
@@ -14,16 +18,40 @@ function ContactForm({
 
       <div className="input-info">
         <label htmlFor="phone-number">Phone number:</label>
-        <input type="tel" id="phone-number" onChange={onPhoneNumberChange} />
+        <input
+          type="tel"
+          id="phone-number"
+          onChange={onPhoneNumberChange}
+          maxLength={15}
+          value={phoneNumber}
+        />
 
         <label htmlFor="email">Email:</label>
-        <input type="text" id="email" onChange={onEmailChange} />
+        <input
+          type="text"
+          id="email"
+          onChange={onEmailChange}
+          maxLength={35}
+          value={email}
+        />
 
         <label htmlFor="location">Location:</label>
-        <input type="text" id="location" onChange={onlocationChange} />
+        <input
+          type="text"
+          id="location"
+          onChange={onlocationChange}
+          maxLength={18}
+          value={location}
+        />
 
         <label htmlFor="linked-in">linkedIn link:</label>
-        <input type="url" id="linked-in" onChange={onlinkedInChange} />
+        <input
+          type="url"
+          id="linked-in"
+          onChange={onlinkedInChange}
+          maxLength={18}
+          value={linkedIn}
+        />
       </div>
     </div>
   );

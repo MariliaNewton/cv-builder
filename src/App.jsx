@@ -14,6 +14,9 @@ import SkillsForm from "./components/SkillsForm";
 import WorkExpForm from "./components/WorkExpForm";
 import EducationForm from "./components/EducationForm";
 import CVPreview from "./components/CVPreview";
+import Button from "./components/Button";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 function App() {
   // States PersonalForm
@@ -75,8 +78,16 @@ function App() {
     setNewStartDateEdu("");
     setNewEndDateEdu("");
   }
+  function handleDeleteEducationButtonClick(e, index) {
+    e.preventDefault();
+    handleDeleteEducation(index);
+  }
   function handleDeleteEducation(index) {
     setEducations(educations.filter((_, i) => i !== index));
+  }
+  function handleEditEducationButtonClick(e, index) {
+    e.preventDefault();
+    handleEditEducation(index);
   }
   function handleEditEducation(index) {
     const educationToEdit = educations.find((_, i) => i === index);
@@ -121,11 +132,23 @@ function App() {
     setNewEndDateWork("");
     setNewDescription("");
   }
+
+  function handleDeleteWorkExpButtonClick(e, index) {
+    e.preventDefault();
+    handleDeleteWorkExp(index);
+  }
   function handleDeleteWorkExp(index) {
     setWorkExperiences(workExperiences.filter((_, i) => i !== index));
   }
+
+  function handleEditWorkExpButtonClick(e, index) {
+    e.preventDefault();
+    handleEditWorkExp(index);
+  }
+
   function handleEditWorkExp(index) {
     const workExpToEdit = workExperiences.find((_, i) => i === index);
+
     setNewRole(workExpToEdit.role);
     setNewCompany(workExpToEdit.company);
     setNewStartDateWork(workExpToEdit.startDate);
@@ -192,6 +215,99 @@ function App() {
     setNewSkill(e.target.value);
   }
 
+  // Handler helper buttons
+  function handleResetForms() {
+    setFirstName("");
+    setLastName("");
+    setOccupation("");
+    setSummary("");
+    setPhoneNumber("");
+    setEmail("");
+    setLocation("");
+    setLinkedIn("");
+    setSkills([]);
+    setNewSkill("");
+    setWorkExperiences([]);
+    setNewRole("");
+    setNewCompany("");
+    setNewStartDateWork("");
+    setNewEndDateWork("");
+    setNewDescription("");
+    setEducations([]);
+    setNewSchool("");
+    setNewDegree("");
+    setNewStartDateEdu("");
+    setNewEndDateEdu("");
+  }
+
+  function handleLoadExampleCV() {
+    setFirstName("Marilia");
+    setLastName("Newton");
+    setOccupation("Web Developer");
+    setSummary(
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium corporis eligendi quos natus consectetur sint eum nobis dolore neque error reiciendis explicabo ex minima quae fugit, corrupti, temporibus soluta blanditiis."
+    );
+    setPhoneNumber("+123654789");
+    setEmail("marilia@email.com");
+    setLocation("France");
+    setLinkedIn("linkedin.com/marilia");
+    setSkills([
+      "Java Script",
+      "CSS",
+      "HTML",
+      "Webpack",
+      "NPM",
+      "React",
+      "Jest",
+    ]);
+    setWorkExperiences([
+      {
+        role: "Manager",
+        company: "Company Inc",
+        startDate: "2022-04-05",
+        endDate: "2024-02-01",
+        description: "",
+      },
+      {
+        role: "Developer",
+        company: "Studio ABC",
+        startDate: "2022-04-05",
+        endDate: "",
+        description:
+          "Accusantium corporis eligendi quos natus consectetur sint eum nobis dolore neque error reiciendis explicabo.",
+      },
+    ]);
+    setEducations([
+      {
+        school: "University",
+        degree: "Engineering",
+        startDate: "2019-03-02",
+        endDate: "2023-08-09",
+      },
+      {
+        school: "The Odin Project",
+        degree: "Online bootcamp",
+        startDate: "2024-03-02",
+        endDate: "2025-03-02",
+      },
+      {
+        school: "Udemy",
+        degree: "Java Script Course",
+        startDate: "2023-03-02",
+        endDate: "2023-03-02",
+      },
+    ]);
+  }
+  function handleDownloadPDF() {
+    const input = document.querySelector(".cv-preview-container");
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
+      pdf.save("cv.pdf");
+    });
+  }
+
   return (
     <div className="main">
       <header>
@@ -200,6 +316,10 @@ function App() {
       <div className="main-container">
         <div className="forms-container">
           <PersonalForm
+            firstName={firstName}
+            lastName={lastName}
+            occupation={occupation}
+            summary={summary}
             onFirstNameChange={handleFirstNameChange}
             onLastNameChange={handleLastNameChange}
             onOccupationChange={handleOccupationChange}
@@ -208,6 +328,10 @@ function App() {
           />
 
           <ContactForm
+            phoneNumber={phoneNumber}
+            email={email}
+            location={location}
+            linkedIn={linkedIn}
             onPhoneNumberChange={handlePhoneNumberChange}
             onEmailChange={handleEmailChange}
             onlocationChange={handlelocationChange}
@@ -226,8 +350,8 @@ function App() {
 
           <WorkExpForm
             onSubmitForm={handleSubmitWorkExp}
-            onDeleteWorkExp={handleDeleteWorkExp}
-            onEditWorkExp={handleEditWorkExp}
+            onDeleteWorkExp={handleDeleteWorkExpButtonClick}
+            onEditWorkExp={handleEditWorkExpButtonClick}
             onRoleChange={handleRoleChange}
             onCompanyChange={handleCompanyChange}
             onStartDateChange={handleStartDateWorkChange}
@@ -244,8 +368,8 @@ function App() {
 
           <EducationForm
             onSubmitForm={handleSubmitEducation}
-            onDeleteEducation={handleDeleteEducation}
-            onEditEducation={handleEditEducation}
+            onDeleteEducation={handleDeleteEducationButtonClick}
+            onEditEducation={handleEditEducationButtonClick}
             onSchoolChange={handleSchoolChange}
             onDegreeChange={handleDegreeChange}
             onStartDateChange={handleStartDateEduChange}
@@ -257,6 +381,15 @@ function App() {
             newEndDate={newEndDateEdu}
             onSeeMoreButtonClick={handleToggleActiveClass}
           />
+
+          <div className="button-container">
+            <Button
+              onClickButton={handleLoadExampleCV}
+              buttonText={"Load Example"}
+            />
+            <Button onClickButton={handleResetForms} buttonText={"Reset"} />
+            <Button onClickButton={handleDownloadPDF} buttonText={"Print"} />
+          </div>
         </div>
 
         <div className="cv-preview-container">

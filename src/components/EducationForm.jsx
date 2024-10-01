@@ -44,6 +44,7 @@ function EducationalForm({
           id="start-date"
           value={newStartDate}
           onChange={onStartDateChange}
+          min="2000-01-01"
           required
         />
 
@@ -65,11 +66,11 @@ function EducationalForm({
                 {education.degree} - {education.school}
               </p>
               <button
-                onClick={() => onEditEducation(index)}
+                onClick={(e) => onEditEducation(e, index)}
                 className="edit-button"
               ></button>
               <button
-                onClick={() => onDeleteEducation(index)}
+                onClick={(e) => onDeleteEducation(e, index)}
                 className="delete-button"
               ></button>
             </div>

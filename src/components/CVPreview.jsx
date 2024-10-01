@@ -1,5 +1,9 @@
 import Icon from "@mdi/react";
 import { mdiPhone } from "@mdi/js";
+import { mdiEmail } from "@mdi/js";
+import { mdiHome } from "@mdi/js";
+import { mdiLinkedin } from "@mdi/js";
+import { mdiCircleSmall } from "@mdi/js";
 
 function CVPreview({
   firstName,
@@ -30,28 +34,39 @@ function CVPreview({
         <div className="cv-left">
           <div className="cv-contact">
             <h2>CONTACT</h2>
-            <div>
-              <Icon path={mdiPhone} size={1} />
-              <p>{phoneNumber}</p>
-            </div>
-            <div>
-              <img src="" alt="" />
-              <p>{email}</p>
-            </div>
-            <div>
-              <img src="" alt="" />
-              <p>{location}</p>
-            </div>
-            <div>
-              <img src="" alt="" />
-              <p>{linkedIn}</p>
-            </div>
+            {phoneNumber && (
+              <div>
+                <Icon path={mdiPhone} />
+                <p>{phoneNumber}</p>
+              </div>
+            )}
+            {email && (
+              <div>
+                <Icon path={mdiEmail} />
+                <p>{email}</p>
+              </div>
+            )}
+            {location && (
+              <div>
+                <Icon path={mdiHome} />
+                <p>{location}</p>
+              </div>
+            )}
+            {linkedIn && (
+              <div>
+                <Icon path={mdiLinkedin} />
+                <p>{linkedIn}</p>
+              </div>
+            )}
           </div>
 
           <div className="cv-skills">
             <h2>SKILLS</h2>
             {skills.map((skill, index) => (
-              <p key={index}>{skill}</p>
+              <div key={index}>
+                <Icon path={mdiCircleSmall} />
+                <p>{skill}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -59,19 +74,6 @@ function CVPreview({
           <div className="cv-summary">
             <h2>SUMMARY</h2>
             <p>{summary}</p>
-          </div>
-
-          <div className="cv-education">
-            <h2>EDUCATION</h2>
-            {educations.map((edu, index) => (
-              <div key={index}>
-                <h3>{edu.school}</h3>
-                <p>{edu.degree}</p>
-                <p>
-                  {returnYear(edu.startDate)} - {returnYear(edu.endDate)}
-                </p>
-              </div>
-            ))}
           </div>
 
           <div className="cv-work-exp">
@@ -84,6 +86,19 @@ function CVPreview({
                   {returnYear(workExp.endDate)}
                 </p>
                 <p>{workExp.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="cv-education">
+            <h2>EDUCATION</h2>
+            {educations.map((edu, index) => (
+              <div key={index}>
+                <h3>{edu.school}</h3>
+                <p>{edu.degree}</p>
+                <p>
+                  {returnYear(edu.startDate)} - {returnYear(edu.endDate)}
+                </p>
               </div>
             ))}
           </div>

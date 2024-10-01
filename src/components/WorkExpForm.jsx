@@ -47,6 +47,7 @@ function WorkExpForm({
           id="start-date"
           value={newStartDate}
           onChange={onStartDateChange}
+          min="2000-01-01"
           required
         />
 
@@ -77,11 +78,11 @@ function WorkExpForm({
                 {workExp.role} - {workExp.company}
               </p>
               <button
-                onClick={() => onEditWorkExp(index)}
+                onClick={(e) => onEditWorkExp(e, index)}
                 className="edit-button"
               ></button>
               <button
-                onClick={() => onDeleteWorkExp(index)}
+                onClick={(e) => onDeleteWorkExp(e, index)}
                 className="delete-button"
               ></button>
             </div>

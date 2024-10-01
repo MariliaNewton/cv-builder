@@ -4,6 +4,10 @@ function PersonalForm({
   onOccupationChange,
   onSummaryChange,
   onSeeMoreButtonClick,
+  firstName,
+  lastName,
+  occupation,
+  summary,
 }) {
   // function toggleActiveClass(e) {
   //   e.target.classList.toggle("active");
@@ -22,8 +26,9 @@ function PersonalForm({
         <input
           type="text"
           id="first-name"
-          maxLength={10}
           onChange={onFirstNameChange}
+          maxLength={10}
+          value={firstName}
         />
 
         <label htmlFor="last-name">Last name:</label>
@@ -32,6 +37,7 @@ function PersonalForm({
           id="last-name"
           onChange={onLastNameChange}
           maxLength={10}
+          value={lastName}
         />
 
         <label htmlFor="occupation">Occupation:</label>
@@ -39,14 +45,16 @@ function PersonalForm({
           type="text"
           id="occupation"
           onChange={onOccupationChange}
-          maxLength={15}
+          maxLength={25}
+          value={occupation}
         />
 
         <label htmlFor="summary">Summary:</label>
         <textarea
           id="summary"
           onChange={onSummaryChange}
-          placeholder="Write about yourself and your experience..."
+          maxLength={350}
+          value={summary}
         />
       </div>
     </div>
