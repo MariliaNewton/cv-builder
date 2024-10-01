@@ -29,6 +29,7 @@ function WorkExpForm({
           id="position"
           value={newRole}
           onChange={onRoleChange}
+          maxLength={40}
           required
         />
 
@@ -38,6 +39,7 @@ function WorkExpForm({
           id="company"
           value={newCompany}
           onChange={onCompanyChange}
+          maxLength={40}
           required
         />
 
@@ -68,6 +70,7 @@ function WorkExpForm({
           id="description"
           value={newDescription}
           onChange={onDescriptionChange}
+          maxLength={400}
         />
 
         <button type="submit" className="add-button"></button>

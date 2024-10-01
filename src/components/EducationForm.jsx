@@ -26,6 +26,7 @@ function EducationalForm({
           id="school"
           value={newSchool}
           onChange={onSchoolChange}
+          maxLength={40}
           required
         />
 
@@ -35,6 +36,7 @@ function EducationalForm({
           id="degree"
           value={newDegree}
           onChange={onDegreeChange}
+          maxLength={40}
           required
         />
 
